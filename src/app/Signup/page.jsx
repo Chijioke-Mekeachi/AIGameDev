@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Button } from "../../../component/components/Button";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [show, setShow] = useState("text");
