@@ -71,6 +71,10 @@ export default function Login() {
               </a>
             </p>
           </div>
+          <div className="flex flex-row gap-2 py-2">
+            <p className="text-1xl font-bold font-mono py-1 ">login with Google </p>
+            <img src="/google1.png" alt="google" width={40} height={20} className="border-1 p-1 border-grey rounded-lg"/>
+          </div>
         </div>
       </div>
       <div id="footer" className="flex flex-row w-full justify-between">
