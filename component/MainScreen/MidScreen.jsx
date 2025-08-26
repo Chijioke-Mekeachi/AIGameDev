@@ -103,7 +103,7 @@ export default function MidScreen() {
         </div>
       </aside>
 
-      <footer>Made with ❤️ — Open in a browser to play</footer>
+      <footer>Made by Jude-ex — Open in a browser to play</footer>
     </div>
   </div>
 
