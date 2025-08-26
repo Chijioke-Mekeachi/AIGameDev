@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../../../pages/components/Button";
+import { Button } from "../../../component/components/Button";
 import { useRouter } from "next/router";
 
 export default function Login() {

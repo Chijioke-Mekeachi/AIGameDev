@@ -1,7 +1,7 @@
-import LeftScreen from "../../../pages/MainScreen/LeftScreen";
-import MidScreen from "../../../pages/MainScreen/MidScreen";
-import RightScreen from "../../../pages/MainScreen/RightScreen";
-import Top from "../../../pages/nav/Top";
+import LeftScreen from "../../../component/MainScreen/LeftScreen";
+import MidScreen from "../../../component/MainScreen/MidScreen";
+import RightScreen from "../../../component/MainScreen/RightScreen";
+import Top from "../../../component/nav/Top";
 
 const Dashboard = () => {
     return (
