@@ -41,7 +41,7 @@ export default function LeftScreen() {
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          Authorization: "Bearer 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",
+          Authorization: "Bearer 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",
           "HTTP-Referer": "<YOUR_SITE_URL>",
           "X-Title": "<YOUR_SITE_NAME>",
           "Content-Type": "application/json",
