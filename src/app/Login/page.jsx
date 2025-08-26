@@ -1,22 +1,28 @@
 "use client";
 import { useState } from "react";
 import { Button } from "../../../pages/components/Button";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const handle_show = () => {
     setShowPassword((prev) => (prev === "password" ? "text" : "password"));
   };
 
   return (
-    <div className="md:flex flex-col grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-20">
+    <div className="md:flex flex-col grid-rows-[20px_1fr_20px] items-center justify-between min-h-screen p-20">
       <div className="md:flex flex-col gap-6 font-[arial]">
-        <h1 className="font-bold text-6xl text-center bg-gradient-to-r from-blue-500 to-purple-700 bg-clip-text text-transparent font-mono drop-shadow-lg">GameDevAI</h1>
+        <h1 className="font-bold text-6xl text-center bg-gradient-to-r from-blue-500 to-purple-700 bg-clip-text text-transparent font-mono drop-shadow-lg animate-gradient animate-typewriter inline-block">
+          GameDevAI
+        </h1>
         <div className="md:flex flex-col w-100 gap-10 h-100 rounded-lg p-6 text-center bg-black border-2 border-blue-400">
-          <code className="text-blue-800 text-4xl font-weight-black font-bold">Login</code>
+          <h1 className="font-mono text-blue-800 text-4xl font-weight-black font-bold">
+            Login
+          </h1>
           <div className="md:flex flex-col gap-6 align-center">
             {/* Email */}
             <div>
@@ -52,7 +58,12 @@ export default function Login() {
 
           {/* Login + Link */}
           <div className="md:flex flex-col gap-3">
-            <Button Text="Login" onClick={() => console.log(email, password)} />
+            <Button
+              Text="Login"
+              onClick={() => {
+                router.push("/dashboard");
+              }}
+            />
             <p className="text-left p-2">
               I don't have an Account{" "}
               <a href="/Signup" className="text-blue-500">
@@ -60,6 +71,12 @@ export default function Login() {
               </a>
             </p>
           </div>
+        </div>
+      </div>
+      <div id="footer" className="flex flex-row w-full justify-between">
+        <p>&copy; 2025 by JUD-ex `Just Us Developers Extention `</p>
+        <div>
+          x, github, linked,email, website
         </div>
       </div>
     </div>
