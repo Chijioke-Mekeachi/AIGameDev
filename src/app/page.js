@@ -80,10 +80,10 @@ export default function Home() {
       <footer className="mt-20 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm font-mono pt-10 border-t border-gray-700">
         <p>&copy; 2025 by JUD-ex `Just Us Developers Extension`</p>
         <div className="flex gap-4 mt-4 sm:mt-0">
-          <a href="#" className="hover:text-blue-400">GitHub</a>
-          <a href="#" className="hover:text-blue-400">LinkedIn</a>
-          <a href="#" className="hover:text-blue-400">Email</a>
-          <a href="#" className="hover:text-blue-400">Website</a>
+          <a href="#" className="flex flex-col  gap-2 items-center"> <Image src={'/github.png'} width={30} height={30}/> GitHub</a>
+          <a href="#" className="flex flex-col  gap-2 items-center"> <Image src={'/linkedin.png'} width={30} height={30}/>LinkedIn</a>
+          <a href="#" className="flex flex-col  gap-2 items-center"> <Image src={'/twitter.png'} width={30} height={30}/>Twitter</a>
+          <a href="#" className="flex flex-col  gap-2 items-center"> <Image src={'/globe.svg'} width={30} height={30}/>Website</a>
         </div>
       </footer>
     </div>
