@@ -16,26 +16,9 @@ export default function MidScreen() {
 </head>
 <body>
   <canvas id="gameCanvas" width="400" height="400"></canvas>
+  Edit the code to ger you game started!
   <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-
-    let x = 200, y = 200;
-    document.addEventListener("keydown", e => {
-      if(e.key === "ArrowUp") y -= 10;
-      if(e.key === "ArrowDown") y += 10;
-      if(e.key === "ArrowLeft") x -= 10;
-      if(e.key === "ArrowRight") x += 10;
-    });
-
-    function draw() {
-      ctx.fillStyle = "black";
-      ctx.fillRect(0,0,400,400);
-      ctx.fillStyle = "red";
-      ctx.fillRect(x, y, 20, 20);
-      requestAnimationFrame(draw);
-    }
-    draw();
+    //script
   </script>
 </body>
 </html>`);
