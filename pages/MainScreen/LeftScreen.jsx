@@ -12,7 +12,7 @@ export default function LeftScreen() {
     if (!message.trim()) return;
 
     const prompt = message;
-    setChat(prev => [...prev, { role: "user", content: prompt }]);
+    setChat((prev) => [...prev, { role: "user", content: prompt }]);
     setMessage("");
     setIsTyping(true);
 
@@ -24,17 +24,15 @@ export default function LeftScreen() {
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": "Bearer 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",
-          "HTTP-Referer": "<YOUR_SITE_URL>",
-          "X-Title": "<YOUR_SITE_NAME>",
+          Authorization:
+            "Bearer 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",
+          "HTTP-Referer": "AIDev",
+          "X-Title": "AIGAmeDev",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           model: "openai/gpt-oss-20b:free",
-          messages: [
-            ...chat,
-            { role: "user", content: prompt }
-          ],
+          messages: [...chat, { role: "user", content: prompt }],
         }),
       });
 
@@ -43,14 +41,12 @@ export default function LeftScreen() {
       }
 
       const data = await response.json();
-      const aiReply = data.choices?.[0]?.message?.content || "🤖 No response received.";
+      const aiReply =
+        data.choices?.[0]?.message?.content || "🤖 No response received.";
 
-      setChat(prev => [
-        ...prev,
-        { role: "assistant", content: aiReply },
-      ]);
+      setChat((prev) => [...prev, { role: "assistant", content: aiReply }]);
     } catch (error) {
-      setChat(prev => [
+      setChat((prev) => [
         ...prev,
         { role: "assistant", content: `❌ Error: ${error.message}` },
       ]);
@@ -68,6 +64,34 @@ export default function LeftScreen() {
     }
   };
 
+  // 🟢 Split AI message into text + code parts
+  const renderMessage = (text) => {
+    const parts = text.split(/```([\s\S]*?)```/g); // split by code blocks
+    return parts.map((part, idx) => {
+      if (idx % 2 === 1) {
+        // This is code
+        return (
+          <pre
+            key={idx}
+            className="bg-gray-800 text-green-300 p-3 rounded-md overflow-x-auto text-sm my-2"
+          >
+            <code>{part.trim()}</code>
+          </pre>
+        );
+      } else {
+        // This is normal text
+        return (
+          <p
+            key={idx}
+            className="whitespace-pre-wrap leading-relaxed"
+          >
+            {part}
+          </p>
+        );
+      }
+    });
+  };
+
   return (
     <section className="bg-black w-full md:w-1/5 border-r border-gray-700 flex flex-col py-6 px-4 space-y-4">
       {/* Title */}
@@ -76,17 +100,23 @@ export default function LeftScreen() {
       </h2>
 
       {/* Chat Display */}
-      <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+      <div className="flex-1 overflow-y-auto space-y-3 pr-1">
         {chat.map((msg, idx) => (
           <div
             key={idx}
-            className={`p-3 rounded-lg text-sm break-words max-w-full ${
+            className={`p-3 rounded-lg text-sm max-w-full ${
               msg.role === "user"
                 ? "bg-blue-800 text-white self-end"
                 : "bg-gray-700 text-green-200 self-start"
             }`}
           >
-            {msg.role === "user" ? `You: ${msg.content}` : `AI: ${msg.content}`}
+            {msg.role === "user"
+              ? `You: ${msg.content}`
+              : (
+                <div>
+                  <span className="font-bold">AI:</span> {renderMessage(msg.content)}
+                </div>
+              )}
           </div>
         ))}
 
@@ -113,7 +143,6 @@ export default function LeftScreen() {
             }
           }}
         />
-        {/* Free Fire-style Button (No external fonts/libraries) */}
         <button
           onClick={sendMessage}
           disabled={isTyping}
