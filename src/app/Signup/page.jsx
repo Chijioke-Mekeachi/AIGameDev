@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "../../../component/components/Button";
 import { useRouter } from "next/navigation";
+import { supabase } from "../../../component/lib/supabase";
 
 export default function Login() {
   const [show, setShow] = useState("text");
@@ -17,6 +18,41 @@ export default function Login() {
   function handleConfirm() {
     password;
   }
+  const handleSignup = async () => {
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+      const user = data.user;
+
+      // Insert into "users" table
+      const { error: dbError, data: profileData } = await supabase
+        .from("profile")
+        .insert([
+          {
+            id: user.id,          // must match auth.user.id
+            username: username,
+            chance: 3,
+            lastUsed: null,
+          },
+        ])
+        .select()
+        .single();
+
+      if (dbError) throw dbError;
+
+      // Update context so app knows user is logged in
+      setProfile(profileData);
+
+      // Redirect to dashboard
+      router.push("/dashboard");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
   return (
     <div className="md:flex flex-col grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-20">
       <div className="md:flex flex-col gap-6 font-[arial]">

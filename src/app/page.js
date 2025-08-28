@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Typewriter from "./typewriter";
+import Footer from "../../component/components/ FooterSect";
+
 
 export default function Home() {
   const router = useRouter();
@@ -46,7 +48,7 @@ export default function Home() {
               onClick={() => router.push("/Login")}
               className="mt-6 bg-gradient-to-r from-blue-600 to-purple-500 hover:from-purple-600 hover:to-blue-500 text-white font-bold p-3 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
             >
-              Go to Login
+              Start Building
             </button>
           </div>
           <div className="flex justify-center">
@@ -102,35 +104,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-20 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-sm font-mono pt-10 border-t border-gray-700">
-  <p>&copy; 2025 by JUD-ex `Just Us Developers Extension`</p>
-
-  <div className="flex gap-4 mt-4 sm:mt-0">
-    {[
-      { name: "GitHub", icon: "/github.png", link: "#" },
-      { name: "LinkedIn", icon: "/linkedin.png", link: "#" },
-      { name: "Twitter", icon: "/twitter.png", link: "#" },
-      { name: "Website", icon: "/globe.svg", link: "#" },
-    ].map((item, index) => (
-      <a
-        key={index}
-        href={item.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative group border-1 border-purple-500 w-20 h-20 bg-gray-800 flex flex-col justify-center items-center rounded-lg shadow-lg transform transition-transform duration-300 hover:-translate-y-3 hover:shadow-2xl"
-      >
-        {/* Icon floats up on hover */}
-        <div className="absolute  top-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Image src={item.icon} width={30} height={30} alt={item.name} />
-        </div>
-
-        {/* Label visible normally */}
-        <span className="text-gray-300 font-mono font-bold">{item.name}</span>
-      </a>
-    ))}
-  </div>
-</footer>
-
+      <Footer/>
     </div>
   );
 }
